@@ -10,6 +10,7 @@ contract NFT is ERC721, Ownable {
   mapping (uint => uint) public price;
 
   event Purchase(address owner, uint price, uint id, string uri);
+  event Minted(string tokenUri);
 
   constructor() ERC721("YASH DEMO", "YDMO") {
   	_owner = msg.sender;
@@ -21,7 +22,9 @@ contract NFT is ERC721, Ownable {
 
     _mint(address(this), _tokenId);
     _setTokenURI(_tokenId, _tokenURI);
-    
+
+    emit Minted(_tokenURI);
+
     return true;
   }
 
